@@ -1,4 +1,22 @@
 body {
   background-color: cyan;
-  text-align: center;
+text-align: center;
+}
+
+
+.btnCentered {
+  display: flex;
+    justify-content: center;
+}
+
+
+button {
+/* display: flex; */
+display: inline-block;
+margin-left: 25px;
+  margin-right: 25px;
+  padding: 15px;
+  border-radius: 10%;
+  background-color: pink;
+  text-transform: uppercase;
 }
