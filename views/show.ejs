@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+<header>
+<h2><%=photographer.username%>'s Images </h2>
+</header>
+<br>
+<br>
+
+
+
+<section>
+<a href="/photographer/<%=photographer.id%>/edit">Edit</a>
+</section>
+
+
+<section>
+
+      <form method= "POST" action="/photographer/<%=photographer.id%>/?_method=DELETE">
+        <input type="submit" value="DELETE"/>
+      </form>
+    </section>
+
+
+  </body>
+</html>

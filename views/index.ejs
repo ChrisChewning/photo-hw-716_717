@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+<header>
+<h1>Meet the Talented Photographers</h1>
+
+<section>
+  <form action="/photographer/home" method="get">
+   <button type="submit">Home</button>
+   </form>
+
+   <form action="/photographer/new" method="get">
+     <button type="submit">Add Your Info!</button>
+     </form>
+</section>
+</header>
+
+
+<main>
+  <h1>List of Photographers</h1>
+      <%for(let i=0; i<photographer.length; i++) {%>
+        <a href="/photographer/<%=photographer[i].id%>">
+        <h4><%=photographer[i].username%></h4>
+</a>
+          <%}%>
+</main>
+
+
+  </body>
+</html>
