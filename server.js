@@ -17,6 +17,11 @@ const photographersController =
 require('./controllers/photographers.js');
 app.use('/photographer', photographersController);
 
+const photosController = require('./controllers/photos.js');
+require('./controllers/photos.js');
+app.use('/photo', photosController);
+
+
 
 //Your port
 app.listen(port, () => {

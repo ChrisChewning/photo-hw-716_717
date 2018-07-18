@@ -18,12 +18,14 @@
 
 <main>
 <h2>Photographs</h2>
-<form action="/photographer/<%=photographer.id%>?_method=PUT" method=POST">
-
+  <form action="/photographer/<%=photographer.id%>?_method=PUT" method="POST">
+    <input type="text" name="username" value="<%=photographer.username%>" >
+    <input type="text" name="password" value="<%=photographer.password%>" >
+    <button type="submit"> Update User</button>
+  </form>
 </main>
 
 
   <body>
-    <h1>EDIT PAGE</h1>
   </body>
 </html>

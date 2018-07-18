@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Photographer = require('../models/photographers');
+const Photo = require('../models/photos');
 
 
 //Breakdown. controller.route('/where to go on browser', request argument, ) arrow function {
@@ -21,9 +21,9 @@ const Photographer = require('../models/photographers');
 
 //HOME PAGE
 router.get('/home', (req, res) => {
-  Photographer.find({}, (err, foundPhotographer) => {
-    res.render('photographers/index.ejs', {
-      photographer: foundPhotographer
+  Photo.find({}, (err, foundPhoto) => {
+    res.render('photos/index.ejs', {
+      photo: foundPhoto
     });
   });
 });
@@ -31,17 +31,17 @@ router.get('/home', (req, res) => {
 
 //NEW PAGE
 router.get('/new', (req, res) => {
-  res.render('photographers/new.ejs')
+  res.render('photos/new.ejs')
 })
 
 
 
 
 //SHOW ROUTE (after new page so you can see it)
-router.get('/:id', (req, res) => {
-Photographer.findById(req.params.id, (err, showPhotographer) => {
-  res.render('photographers/show.ejs', {
-    photographer: showPhotographer
+router.get('/show', (req, res) => {
+Photo.findById(req.params.id, (err, showPhoto) => {
+  res.render('photos/show.ejs', {
+    photo: showPhoto
   });
 });
 });
@@ -49,11 +49,11 @@ Photographer.findById(req.params.id, (err, showPhotographer) => {
 
 
 //you are posting to the show page. This creates something.
-router.post('/home/', (req, res) => {
+router.post('/show', (req, res) => {
   console.log(req.body);
-  Photographer.create(req.body, (err, createdPhotographer) => {
-    console.log(createdPhotographer, ' this is the created photographer');
-    res.redirect('/photographer/home')
+  Photo.create(req.body, (err, createdPhoto) => {
+    console.log(createdPhoto, ' this is the created photo');
+    res.redirect('/photo/show')
   });
 });
 
@@ -62,9 +62,9 @@ router.post('/home/', (req, res) => {
 //EDIT PAGE
 //#1: The get route allows us to get to the edit.ejs page per id.
 router.get('/:id/edit', (req, res) => {
-  Photographer.findById(req.params.id, (err, editPhotographer) => {
-    res.render('photographers/edit.ejs', {
-      photographer: editPhotographer
+  Photo.findById(req.params.id, (err, editPhoto) => {
+    res.render('photos/edit.ejs', {
+      photo: editPhoto
     })
   })
 })
@@ -74,16 +74,16 @@ router.get('/:id/edit', (req, res) => {
 
 //PUT ROUTE updates the id
 router.put('/:id', (req, res) => {
-  Photographer.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedPhotographer) => {
-    res.redirect('/photographer/home');
+  Photo.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedPhoto) => {
+    res.redirect('/photo/home');
   });
 });
 
 
 //DELETE ROUTE
 router.delete('/:id/', (req, res) => {
-  Photographer.findByIdAndDelete(req.params.id, (err, deletedArticle) => {
-    res.redirect('/photographer/home')
+  Photo.findByIdAndDelete(req.params.id, (err, deletedPhoto) => {
+    res.redirect('/photo/home')
   })
 });
 
