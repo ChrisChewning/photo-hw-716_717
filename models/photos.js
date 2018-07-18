@@ -8,9 +8,10 @@ const photographerSchema = mongoose.Schema({
 });
 
 const photoSchema = mongoose.Schema({
-  user: [photographerSchema.username],
-  user: {type: String, required: true},
+
+  // user: {type: String, required: true},
   url: {type: String, required: true},
+  username: [photographerSchema],
   about: String,
 });
 

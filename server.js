@@ -9,7 +9,7 @@ require('./db/db')
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(methodOverride('_method'));
 
-
+app.use(express.static('public'));
 
 //1st: require your controller.
 //2nd: use /photographer as the first part of your url address. Then include your photographersController. this will be implied into your controller routes so in your controller if it's '/' your ejs needs to be /photographer   to match.

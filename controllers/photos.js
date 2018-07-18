@@ -17,8 +17,6 @@ const Photo = require('../models/photos');
 
 
 
-
-
 //HOME PAGE
 router.get('/home', (req, res) => {
   Photo.find({}, (err, foundPhoto) => {
@@ -27,6 +25,17 @@ router.get('/home', (req, res) => {
     });
   });
 });
+
+
+//POST ROUTE: you are posting to the show page. This creates something.
+router.post('/show', (req, res) => {
+  console.log(req.body);
+  Photo.create(req.body, (err, createdPhoto) => {
+    console.log(createdPhoto, ' this is the created photo');
+    res.redirect('/photo/show')
+  });
+});
+
 
 
 //NEW PAGE
@@ -46,16 +55,6 @@ Photo.findById(req.params.id, (err, showPhoto) => {
 });
 });
 
-
-
-//you are posting to the show page. This creates something.
-router.post('/show', (req, res) => {
-  console.log(req.body);
-  Photo.create(req.body, (err, createdPhoto) => {
-    console.log(createdPhoto, ' this is the created photo');
-    res.redirect('/photo/show')
-  });
-});
 
 
 

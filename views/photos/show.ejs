@@ -7,17 +7,17 @@
   </head>
   <body class="show">
 
-  <h3>Posted By... <%=photographer.name%></h3>
-
-  <h4 class><img class="photoLarge" src="<%=photo.url%>" ></h4>
-
-  </form>
-  <br>
+    <h3>All Photos</h3>
 
 
-  <form method = "POST" action="/photo/home">
+<form>
+
+Name: <input type="text" name="url" value="<%=photo.url%>"/>
+
+
+  <form method = "get" action="/photo/home">
     <input type="submit" value="HOME" />
-
+</form>
 
   </body>
 </html>
