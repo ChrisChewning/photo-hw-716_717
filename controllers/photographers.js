@@ -28,8 +28,9 @@ if(req.session.loggedIn === true) {
 
 // or else send them back to the auth page so they can log in
 } else {
+  console.log('whoopsie');
   req.session.message = 'You have to be logged in for that.'
-  res.redirect('/auth')
+  res.redirect('/users')
 }
 });
 

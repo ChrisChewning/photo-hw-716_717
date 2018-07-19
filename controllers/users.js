@@ -14,17 +14,17 @@ router.get('/', (req, res) => {
 
 // Users is the name of your collection(?)
 
-// router.post('/login', (req, res) => {
-//   //req.session is available on every single request from the client.
-//   //our session is available in the following
-//   console.log(req.session);
-//
-// //you can add any propery you want to the session.
-// //and as soon as you do that it's saved.
-//   req.session.loggedIn = true;
-//   req.session.username = req.body.username;
-//   res.redirect('/articles');
-// });
+router.post('/login', (req, res) => {
+  //req.session is available on every single request from the client.
+  //our session is available in the following
+  console.log(req.session);
+
+//you can add any property you want to the session.
+//and as soon as you do that it's saved.
+  req.session.loggedIn = true;
+  req.session.username = req.body.username;
+  res.redirect('/photographer');
+});
 
 
 
