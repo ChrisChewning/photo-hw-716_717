@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const Photo = require('../models/photos');
 const Photographer = require('../models/photographers');
-
+const User = require('../models/users')
 
 //Breakdown. controller.route('/where to go on browser', request argument, ) arrow function {
 //find all the collections(?) in the model Photographer, we are storing in a database.
@@ -14,8 +15,23 @@ const Photographer = require('../models/photographers');
 //the .ejs file needs to match this. However since controller has 'photographer assinged to it, this is /photographer so the ejs file needs to say /photographer in its route to match'
 
 
+router.get('/', (req, res)=>{
+//if someone is logged in then show them the article page.
+if(req.session.loggedIn === true) {
 
+  Article.find({}, (err, foundArticles)=>{
+    res.render('photographers/index.ejs', {
+      photographer: foundPhotographer,
+      username: req.session.username
+    });
+  })
 
+// or else send them back to the auth page so they can log in
+} else {
+  req.session.message = 'You have to be logged in for that.'
+  res.redirect('/auth')
+}
+});
 
 
 
@@ -37,6 +53,7 @@ router.get('/new', (req, res) => {
 
 
 
+
 //SHOW ROUTE (after new page so you can see it)
 router.get('/:id', (req, res) => {
 Photographer.findById(req.params.id, (err, showPhotographer) => {
@@ -45,6 +62,20 @@ Photographer.findById(req.params.id, (err, showPhotographer) => {
   });
 });
 });
+
+
+
+// router.post ('/', async (req, res) => {
+//   try {
+//   console.log(' hits the post route');
+//   const newAuthor = await Author.create(req.body);
+//
+//   res.redirect('/authors');
+// } catch (err){
+//   res.send(err, ' not creating a post');
+// }
+// });
+
 
 
 
@@ -59,6 +90,7 @@ router.post('/home/', (req, res) => {
 
 
 
+
 //EDIT PAGE
 //#1: The get route allows us to get to the edit.ejs page per id.
 router.get('/:id/edit', (req, res) => {
@@ -68,8 +100,6 @@ router.get('/:id/edit', (req, res) => {
     })
   })
 })
-
-
 
 
 //PUT ROUTE updates the id

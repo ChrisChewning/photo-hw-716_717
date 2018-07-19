@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Photo = require('../models/photos');
+const Photographer = require('../models/photographers')
+//^ the error was saying Photographer wasn't defined b.c it wasn't in this doc here.
 
 
 //Breakdown. controller.route('/where to go on browser', request argument, ) arrow function {
@@ -15,8 +17,6 @@ const Photo = require('../models/photos');
 
 
 
-
-
 //HOME PAGE
 router.get('/home', (req, res) => {
   Photo.find({}, (err, foundPhoto) => {
@@ -27,12 +27,24 @@ router.get('/home', (req, res) => {
 });
 
 
+//can't read push of undefined.   Look up foundUser and/or createdPhoto.
+
 //POST ROUTE: you are posting to the show page. This creates something.
 router.post('/show', (req, res) => {
   console.log(req.body);
+  //findOne helps us only find one photographer.
+  //find({}) brings back all the photographers.
+  //foundUser could be anything.
+  Photographer.findOne({'photographer': req.body.photographer}, (err, foundUser) => {
+    //createdPhoto in the photo database what we get back.
   Photo.create(req.body, (err, createdPhoto) => {
-    console.log(createdPhoto, ' this is the created photo');
-    res.redirect('/photo/show')
+    foundUser.photos.push(createdPhoto); //pushes the photo to the user.
+    //this saves in the database. ex: findByIdAndUpdate is a method that talks to the database. foundUser.photos.push doesn't so you need to .save();
+    foundUser.save((err, savedFoundUser) => {
+      console.log(createdPhoto, ' this is the created photo');
+      res.redirect('/photo/show')
+    }); //saves it to the user.
+})
   });
 });
 

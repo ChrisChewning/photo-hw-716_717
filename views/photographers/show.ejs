@@ -7,24 +7,35 @@
   </head>
   <body>
 <header>
-<h2><%=photographer.username%>'s Images </h2>
+<h2><%=photographer.photographer%>'s Images </h2>
 </header>
 <br>
 <br>
 
 
 
-<section>
+<!-- <section>
 <a href="/photographer/<%=photographer.id%>/edit">Edit</a>
-</section>
-
+</section> -->
 
 <section>
-
-      <form method= "POST" action="/photographer/<%=photographer.id%>/?_method=DELETE">
-        <input type="submit" value="DELETE"/>
+      <form method= "GET" action="/photographer/<%=photographer.id%>/edit">
+        <button type="submit">Edit</button>
       </form>
     </section>
+
+<section>
+      <form method= "POST" action="/photographer/<%=photographer.id%>/?_method=DELETE">
+        <button type="submit">Delete</button>
+      </form>
+    </section>
+
+<section>
+  <form action="/photographer/home" method="get">
+   <button type="submit">Home</button>
+   </form>
+</section>
+
 
 
   </body>

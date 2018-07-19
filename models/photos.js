@@ -1,17 +1,11 @@
 const mongoose = require('mongoose');
 
-
-
-const photographerSchema = mongoose.Schema({
-  username: {type: String, required: true},
-  password: {type: String, required: true}
-});
+//don't need this since you're not using it but if you need to take from photographerSchema you'd do this...
+// const Photographer = require('./photographers'); //is photographers.js
 
 const photoSchema = mongoose.Schema({
-
   // user: {type: String, required: true},
   url: {type: String, required: true},
-  username: [photographerSchema],
   about: String,
 });
 
@@ -20,6 +14,3 @@ const photoSchema = mongoose.Schema({
 module.exports = mongoose.model('Photo', photoSchema);
 
 //Mongo takes the 1st arg, lowercases it and pluralizes it.
-
-
-//this is where you mold the two together. the username part.
